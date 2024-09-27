@@ -30,7 +30,7 @@ app.get("/", async (req, res) => {
 
 
 
-// server.js
+
 
 // GET /blog/new
 app.get("/blogs/new", (req, res) => {
