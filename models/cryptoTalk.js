@@ -8,5 +8,5 @@ const cryptoTalkSchema = new mongoose.Schema({
   const CryptoTalk = mongoose.model("cryptoTalk", cryptoTalkSchema); // create model
 
 
-  // models/fruit.js
+  // models/cryptoTalk.js
 module.exports = CryptoTalk;
