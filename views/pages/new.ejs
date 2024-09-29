@@ -1,4 +1,4 @@
-<!-- views/blogNew/new.ejs -->
+<!-- views/New/new.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,21 +9,19 @@
   </head>
   <body>
     <h1>How bold are you?</h1>
-    <h2>It can be about Tech Crypto or Finance:</h2>
-    <form action="/pages" method="POST"></form>
+    <h2>It can be about Tech Crypto or Finance</h2>
+    <form action="/pages" method="POST">
     <div>
     <label for="name">Name:</label><br><br>
     <input type="text" name="name" id="name" required />
     </div><br>
     <div>
-    <label for="story">What is on your mind?</label><br><br>
-    <textarea id="story" name="story" type="text" rows="3" cols="28" required maxlength="300">    
-      What up
-    </textarea>
+    <label for="story">What is on your mind?</label><br>
+<textarea id="story" name="story" rows="5" cols="33">
+</textarea>
+<br>
+    <input type="submit" value="Don't be soft!" />
     </div>
-    <div><small>Please click to submit below</small></div>
-    <br><button type="submit"><strong>Don't be soft!!!</strong></button>
-
     </form>
   </body>
 </html>
