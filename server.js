@@ -19,14 +19,28 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
+
+// GET |Tweeters
+app.get("/pages", async (req, res) => {
+  const allTweeters = await CryptoTalk.find();
+  //console.log(allTweeters); // This logs all tweeters
+  res.render("pages/index.ejs", { pages: allTweeters});
+});
+
+
 // GET.Render |blog/new
 app.get("/pages/new", async (req, res) => {
   res.render("pages/new.ejs");
 });
 // POST |New Blog
 app.post("/pages", async (req, res) => {
-//  await CryptoTalk.create(req.body);
-console.log(req.body)
+  if (req.body.name === "on" && req.body.story === "on") {
+    req.body.name = true;
+  } else {
+    console.log(req.body.story);
+  }
+ 
+  await CryptoTalk.create(req.body);
   res.redirect("pages/new");
 });
 
