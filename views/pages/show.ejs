@@ -5,14 +5,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= talker.name %></title> <!--for a better title based-->
+    <title><%=talkers.name%></title>
+    <!--for a better title based-->
   </head>
   <body>
-    <h1><%= talker.name %>></h1>
-    <% if (talker.story) { %>
-        <p>This talkers wants to be heard</p>
-      <% } else { %>
-        <p>This talker does not want to be heard</p>
-      <% } %>
+    <h1><%= talkers.name %></h1>
+    <% if (talkers.story) { %>
+    <p>This talker wants to be heard</p>
+    <% } else { %>
+    <p>This talker does not want to be heard</p>
+    <% } %>
+    <!-- new delete button -->
+    <form action="/pages/<%=talkers._id%>?_method=DELETE" method="POST">
+      <button type="submit">Delete <%= talkers.name %></button>
+    </form>
+    <a href="/pages/">Back to talkers</a>
   </body>
 </html>

@@ -2,19 +2,23 @@ const dotenv = require("dotenv"); // This is required package
 dotenv.config(); // This loads the environment variables .env file
 const express = require("express");
 const mongoose = require("mongoose"); // This is a required package
+const methodOverride = require("method-override"); // new
+const morgan = require("morgan"); //new
 const app = express();
 // Import the CryptoTalk model
 const CryptoTalk = require("./models/cryptoTalk.js");
-
 // Connect to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
 // log connection status to terminal on start
 mongoose.connection.on("connected", () => {
-  console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
-});
+console.log(`Connected to MongoDB ${mongoose.connection.name}.`);});
+// Database connection code
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method")); // new
+app.use(morgan("dev")); //new
 
-//Routes|Golden 7
+//Routes
+// |Golden 7
 // GET |index.ejs |HOME
 app.get("/", async (req, res) => {
   res.render("index.ejs");
@@ -45,9 +49,9 @@ app.post("/pages", async (req, res) => {
 });
 
 
-app.get("/pages/:talkerId", async (req, res) => {
-  const foundTalker = await CryptoTalk.findById(req.params.talkerId)
-  res.render("pages/show.ejs", {talkers: foundTalker});
+app.get("/talkers/:talkerId", async (req, res) => {
+  const foundTalker = await CryptoTalk.findById(req.params.talkerId);
+  res.render("pages/show.ejs", { talkers: foundTalker });
 });
 
 
