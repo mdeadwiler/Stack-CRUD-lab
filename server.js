@@ -22,18 +22,17 @@ app.get("/", async (req, res) => {
 });
 
 // GET.Render /blog/new
-app.get("/pages/blogNew", (req, res) => {
-    res.render("pages/blogNew.ejs");
+app.get("/pages/new", (req, res) => {
+    res.render("pages/new.ejs");
   });
   
-//Get.Send/blog/new
-app.get("/pages/blogNew", (req, res) => {
-  res.send("This route sends the block page!");
-});
-// POST |new blog
+
+
+
+// POST /New Blog
 app.post("/pages", async (req, res) => {
-  console.log(req.body);
-  res.redirect("/pages/blogNew");//maybe add the slash back if it does not work
+  await CryptoTalk.create(req.body);
+  res.redirect("pages/new");
 });
 
 
