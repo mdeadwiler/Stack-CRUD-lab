@@ -15,16 +15,16 @@ mongoose.connection.on("connected", () => {
 app.use(express.urlencoded({ extended: false }));
 
 //Routes|Golden 7
-// GET |index.ejs |Home
+// GET |index.ejs |HOME
 app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
-// GET |Tweeters
+// GET |Tweeters |This is the Read CRUD |Golden 1
 app.get("/pages", async (req, res) => {
-  const allTweeters = await CryptoTalk.find();
+  const allTalkers = await CryptoTalk.find();
   //console.log(allTweeters); // This logs all tweeters
-  res.render("pages/index.ejs", { pages: allTweeters});
+  res.render("pages/index.ejs", { talkers: allTalkers});
 });
 
 
@@ -32,7 +32,7 @@ app.get("/pages", async (req, res) => {
 app.get("/pages/new", async (req, res) => {
   res.render("pages/new.ejs");
 });
-// POST |New Blog
+// POST |New Blog |This is the Create CRUD |Golden 2
 app.post("/pages", async (req, res) => {
   if (req.body.name === "on" && req.body.story === "on") {
     req.body.name = true;
@@ -41,7 +41,13 @@ app.post("/pages", async (req, res) => {
   }
  
   await CryptoTalk.create(req.body);
-  res.redirect("pages/new");
+  res.redirect("/pages");
+});
+
+
+app.get("/pages/:talkerId", async (req, res) => {
+  const foundTalker = await CryptoTalk.findById(req.params.talkerId)
+  res.render("pages/show.ejs", {talkers: foundTalker});
 });
 
 

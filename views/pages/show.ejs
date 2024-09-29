@@ -1,0 +1,18 @@
+<!--This is your show page of a specific talker || views/fruits/show.ejs-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= talker.name %></title> <!--for a better title based-->
+  </head>
+  <body>
+    <h1><%= talker.name %>></h1>
+    <% if (talker.story) { %>
+        <p>This talkers wants to be heard</p>
+      <% } else { %>
+        <p>This talker does not want to be heard</p>
+      <% } %>
+  </body>
+</html>

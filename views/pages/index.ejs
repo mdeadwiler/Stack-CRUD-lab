@@ -1,5 +1,5 @@
 <!-- views/allTweeters/index.ejs -->
-
+<!--This is the Read CRUD-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,5 +9,12 @@
   </head>
   <body>
     <h1>All Tweeters</h1>
+    <ul>
+        <% talkers.forEach(talkers => { %>
+          <li><a href="/talkers/<%= talkers._id %>"> <%= talkers.name %> </a>
+        </li>
+        <% }); %>
+      </ul>
+      <a href="/pages/new">What else is on your mind?</a>
   </body>
 </html>
