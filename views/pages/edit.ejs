@@ -1,0 +1,31 @@
+<!-- views/New/new.ejs -->
+<!--This is the Create CRUD-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create your cryptoTalk</title>
+  </head>
+  <body>
+    <h1>Edit <%= talkers.name %></h1>
+    <form action="/talkers/<%=talkers._id%>?_method=PUT" method="POST">
+
+      <div>
+        <label for="name">Name:</label><br /><br />
+        <input type="text" name="name" value="<%= talkers.name %>" />
+
+      </div>
+      <br />
+      <div>
+        <label for="story">What is on your mind?</label><br />
+        <textarea id="story" name="story" rows="5" cols="33"></textarea>
+        <br />
+        <!--Update button-->
+        <input type="submit" value="Update!" />
+      </div>
+      <!-- views/talkers/new.ejs -->
+      <a href="/pages/">Back to Talkers</a>
+    </form>
+  </body>
+</html>

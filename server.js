@@ -24,19 +24,19 @@ app.get("/", async (req, res) => {
   res.render("index.ejs");
 });
 
-// GET |Tweeters |This is the Read CRUD |Golden 1
+// GET |Talkers |READ CRUD
 app.get("/pages", async (req, res) => {
   const allTalkers = await CryptoTalk.find();
-  //console.log(allTweeters); // This logs all tweeters
+  //console.log(allTweeters); // This logs all talkers
   res.render("pages/index.ejs", { talkers: allTalkers});
 });
 
 
-// GET.Render |blog/new
+// GET.Render |blog/NEW
 app.get("/pages/new", async (req, res) => {
   res.render("pages/new.ejs");
 });
-// POST |New Blog |This is the Create CRUD |Golden 2
+// POST |New Blog |Create CRUD 
 app.post("/pages", async (req, res) => {
   if (req.body.name === "on" && req.body.story === "on") {
     req.body.name = true;
@@ -53,6 +53,40 @@ app.get("/talkers/:talkerId", async (req, res) => {
   const foundTalker = await CryptoTalk.findById(req.params.talkerId);
   res.render("pages/show.ejs", { talkers: foundTalker });
 });
+
+
+// GET localhost:3000/fruits/:fruitId/edit
+app.get("/talkers/:talkerId/edit", async (req, res) => {
+  const foundTalker = await CryptoTalk.findById(req.params.talkerId);
+  res.render("pages/edit.ejs", {
+    talkers: foundTalker,
+  });
+});
+
+// GET localhost:3000/talkers/:talkerId/edit |UPDATE 
+app.put("/talkers/:talkerId", async (req, res) => {
+  const { name, story } = req.body
+  if (req.body.story === "on" && req.body.name === "on") {
+    req.body.story = true;
+  } else {
+    console.log(req.body.name);
+  }
+  await CryptoTalk.findByIdAndUpdate(req.params.talkerId, {name, story} , {new: true});
+  res.redirect("/pages");
+});
+
+// |DELETE CRUD
+app.delete("/talkers/:talkerId", async (req, res) => {
+  await CryptoTalk.findByIdAndDelete(req.params.talkerId);
+  res.redirect("/pages");
+});
+
+
+
+
+
+
+
 
 
 

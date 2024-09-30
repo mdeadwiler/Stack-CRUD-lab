@@ -11,14 +11,16 @@
   <body>
     <h1><%= talkers.name %></h1>
     <% if (talkers.story) { %>
-    <p>This talker wants to be heard</p>
+    <p><%=talkers.story%></p>
     <% } else { %>
     <p>This talker does not want to be heard</p>
     <% } %>
     <!-- new delete button -->
-    <form action="/pages/<%=talkers._id%>?_method=DELETE" method="POST">
+    <form action="/talkers/<%=talkers._id%>?_method=DELETE" method="POST">
       <button type="submit">Delete <%= talkers.name %></button>
     </form>
+    <!-- This is the edit page link -->
+<a href="/talkers/<%= talkers._id %>/edit">Edit <%= talkers.name %></a><br>
     <a href="/pages/">Back to talkers</a>
   </body>
 </html>
